@@ -1,3 +1,5 @@
+import 'dart:collection'; // Queue、isNotEmpty 需要
+import 'package:slate_app/models/smb_config.dart'; // 根据你项目实际路径导入SmbConfig
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
@@ -426,7 +428,7 @@ class _RemoteImageState extends State<_RemoteImage> {
 class _ImageLoadingController {
   static const int maxConcurrent = 4;
   int _activeRequests = 0;
-  final Queue<_PendingImageRequest> _queue = [];
+  final Queue<_PendingImageRequest> _queue = Queue<_PendingImageRequest>();
 
   Future<Uint8List> loadImage(SmbConfig server, String remotePath) async {
     if (_activeRequests < maxConcurrent) {
