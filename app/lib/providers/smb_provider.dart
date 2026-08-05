@@ -77,7 +77,8 @@ final smbItemsProvider = FutureProvider.family<List<MediaItem>, String>(
     final path = ref.watch(smbCurrentPathProvider);
     final servers = ref.watch(smbServersProvider).value ?? [];
     final server = servers.firstWhere((s) => s.id == serverId);
-    return await SmbService().getMediaItems(server, path: path);
+    MediaItemPage page = await SmbService().getMediaItems(server, path: path);
+return page.items;
   },
 );
 
