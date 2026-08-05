@@ -5,7 +5,6 @@ definitions:
 
   env_versions: &env_versions
     flutter: stable
-    android: latest
 
   artifacts:
     - &debug_apk app/build/app/outputs/apk/debug/*.apk
