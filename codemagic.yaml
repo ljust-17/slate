@@ -29,11 +29,11 @@ definitions:
         - 2513284283@qq.com
       notify:
         success: true
-        failure: true
+        failure: false
 
 workflows:
   slate-android-build:
-    name: Slate 自用构建(Debug)
+    name: Slate
     <<: *instance_mac_m2
     environment:
       <<: *env_versions
