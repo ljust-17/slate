@@ -135,7 +135,7 @@ class CacheService {
         width: _thumbnailSize,
         height: _thumbnailSize,
         maintainAspect: true,
-        interpolate: img.Interpolation.average,
+        interpolation: img.Interpolation.average,
       );
 
       final thumbnailBytes = img.encodeJpg(thumbnail, quality: 70);
