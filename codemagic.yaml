@@ -1,0 +1,55 @@
+definitions:
+  instance_mac_m2: &instance_mac_m2
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+
+  env_versions: &env_versions
+    flutter: stable
+    android: latest
+
+  artifacts:
+    - &debug_apk app/build/app/outputs/apk/debug/*.apk
+
+  scripts:
+    - &flutter_setup
+      name: Flutter setup & pub get
+      script: |
+        cd app
+        flutter clean
+        flutter pub get
+
+    - &build_debug_apk
+      name: Build Android Debug APK
+      script: |
+        cd app
+        flutter build apk --debug
+
+  email_notify: &email_notify
+    email:
+      recipients:
+        - 2513284283@qq.com
+      notify:
+        success: true
+        failure: true
+
+workflows:
+  slate-android-build:
+    name: Slate 自用构建(Debug)
+    <<: *instance_mac_m2
+    environment:
+      <<: *env_versions
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+        - pattern: develop
+          include: true
+    scripts:
+      - *flutter_setup
+      - *build_debug_apk
+    artifacts:
+      - *debug_apk
+    publishing:
+      <<: *email_notify
