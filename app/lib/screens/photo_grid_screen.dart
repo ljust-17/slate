@@ -456,7 +456,7 @@ class _ImageLoadingController {
   }
 
   void _processQueue() {
-    while (_activeRequests < maxConcurrent && _queue.isNotEmpty) {
+    while (_activeRequests < maxConcurrent && !_queue.isEmpty) {
       final request = _queue.removeAt(0);
       _activeRequests++;
       _doLoadImage(request.server, request.remotePath).then((data) {
