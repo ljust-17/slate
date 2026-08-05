@@ -1,5 +1,5 @@
 import 'dart:collection'; // Queue、isNotEmpty 需要
-import 'package:slate_app/models/smb_config.dart'; // 根据你项目实际路径导入SmbConfig
+import 'package:slate_app/models/models.dart'; // 根据你项目实际路径导入SmbConfig
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
